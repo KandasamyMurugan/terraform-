@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/application-deployment-in-aws-terraform-provisioner" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/terraform-git" vcs="Git" />
   </component>
 </project>
