@@ -68,9 +68,10 @@ resource "aws_db_instance" "db" {
   parameter_group_name   = aws_db_parameter_group.db.name
   multi_az               = var.environment == "prod" ? true : false
   storage_encrypted      = var.environment == "prod" ? true : false
-  skip_final_snapshot    = var.environment == "dev" ? true : false
+  skip_final_snapshot = true
+  final_snapshot_identifier = "${var.environment}-db-final-snapshot"
   backup_retention_period = var.backup_retention_period
-  deletion_protection     = var.environment == "prod" ? true : false
+  deletion_protection     = false
 
   tags = merge(
     var.common_tags,

@@ -13,7 +13,7 @@ provider "aws" {
 module "networking" {
   source = "C:/Users/kanmur/OneDrive - ASSA ABLOY Group/My Documents/new profile/Documents/modules-multil-env/networking"
 
-  environment          = "stage"
+  environment          = "prod"
   vpc_cidr             = var.vpc_cidr
   public_subnet_cidrs  = var.public_subnet_cidrs
   private_subnet_cidrs = var.private_subnet_cidrs
@@ -22,7 +22,7 @@ module "networking" {
 
 
   common_tags = {
-    Environment = "stage"
+    Environment = "prod"
     Project     = "multi-env-infrastructure"
   }
 }
@@ -43,7 +43,7 @@ module "web_server" {
 
 
   common_tags = {
-    Environment = "stage"
+    Environment = "prod"
     Project     = "multi-env-infrastructure"
   }
 }
@@ -51,7 +51,7 @@ module "web_server" {
 module "database" {
   source = "C:/Users/kanmur/OneDrive - ASSA ABLOY Group/My Documents/new profile/Documents/modules-multil-env/database"
 
-  environment                = "stage"
+  environment                = "prod"
   vpc_id                     = module.networking.vpc_id
   subnet_ids                 = module.networking.private_subnet_ids
   allowed_security_group_ids = [module.web_server.web_sg_id]
@@ -62,7 +62,7 @@ module "database" {
   backup_retention_period    = 1 // Minimal backup retention for dev
 
   common_tags = {
-    Environment = "stage"
+    Environment = "prod"
     Project     = "multi-env-infrastructure"
   }
 }

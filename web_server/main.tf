@@ -102,7 +102,7 @@ resource "aws_lb" "web" {
   security_groups    = [aws_security_group.web.id]
   subnets            = var.subnet_ids
 
-  enable_deletion_protection = var.environment == "prod" ? true : false
+  enable_deletion_protection = false
 
   tags = merge(
     var.common_tags,
