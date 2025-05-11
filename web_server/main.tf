@@ -43,15 +43,16 @@ resource "aws_launch_template" "web" {
   name_prefix   = "${var.environment}-web-"
   image_id      = var.ami_id
   instance_type = var.instance_type
-  key_name              = "kops-key"
+  key_name      = "kops-key"
 
   vpc_security_group_ids = [aws_security_group.web.id]
 
-  user_data = base64encode(templatefile("${path.module}/user_data.sh.tpl", {
-    environment = var.environment
-    vpc_name    = var.vpc_name
-    server_index = 1
-  }))
+  user_data = base64encode(
+    templatefile("${path.module}/user-data.sh", {
+      environment = var.environment
+      vpc_name = var.vpc_name
+    })
+  )
 
   tag_specifications {
     resource_type = "instance"
@@ -63,6 +64,27 @@ resource "aws_launch_template" "web" {
     )
   }
 }
+
+# Data source to get the instances from your ASG
+data "aws_instances" "web_instances" {
+  filter {
+    name   = "tag:aws:autoscaling:groupName"
+    values = [aws_autoscaling_group.web.name]
+  }
+
+  filter {
+    name   = "instance-state-name"
+    values = ["running"]
+  }
+
+  depends_on = [aws_autoscaling_group.web]
+}
+
+data "aws_instance" "web_details" {
+  instance_id = data.aws_instances.web_instances.ids[0]
+}
+
+
 
 
 resource "aws_autoscaling_group" "web" {

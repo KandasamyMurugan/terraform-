@@ -3,7 +3,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Environment = "stage"
+      Environment = "prod"
       Project     = "multi-env-infrastructure"
       ManagedBy   = "terraform"
     }
@@ -39,6 +39,7 @@ module "web_server" {
   asg_min_size          = 1
   asg_max_size          = 2
   create_https_listener = false // No HTTPS in dev to save on certificate costs
+  ssh_private_key = var.key_name
 
 
 

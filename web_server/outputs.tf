@@ -13,4 +13,8 @@ output "web_sg_id" {
   value = aws_security_group.web.id
 }
 
-
+# Fixed output for instance public IPs
+output "instance_public_ips" {
+  description = "Public IPs of instances used in null_resource"
+  value       = data.aws_instance.web_details.public_ip != "" ? [data.aws_instance.web_details.public_ip] : []
+}

@@ -26,6 +26,14 @@ variable "subnet_ids" {
   type        = list(string)
 }
 
+variable "ssh_private_key" {
+  description = "Content of the SSH private key for connecting to instances"
+  type        = string
+  sensitive   = true
+  # No default - must be provided by tfvars or environment variable
+}
+
+
 variable "ami_id" {
   description = "AMI ID to use for the web servers"
   type        = string

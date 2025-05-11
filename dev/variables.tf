@@ -31,7 +31,7 @@ variable "availability_zones" {
 variable "web_ami_id" {
   description = "AMI ID to use for the web servers"
   type        = string
-  default = "ami-084568db4383264d4"
+  default     = "ami-084568db4383264d4"
 }
 
 variable "db_password" {
@@ -41,3 +41,4 @@ variable "db_password" {
 }
 
 variable "environment" {}
+variable "key_name" {}

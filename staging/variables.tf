@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region"
   type        = string
-  default     = "us-east-2"
+  default     = "us-east-1"
 }
 
 variable "vpc_cidr" {
@@ -25,13 +25,13 @@ variable "private_subnet_cidrs" {
 variable "availability_zones" {
   description = "List of availability zones"
   type        = list(string)
-  default     = ["us-east-2a", "us-east-2b"]
+  default     = ["us-east-1a", "us-east-1b"]
 }
 
 variable "web_ami_id" {
   description = "AMI ID to use for the web servers"
   type        = string
-  default     = "ami-04f167a56786e4b09"
+  default     = "ami-084568db4383264d4"
 }
 
 variable "db_password" {
@@ -41,3 +41,4 @@ variable "db_password" {
 }
 
 variable "environment" {}
+variable "key_name" {}

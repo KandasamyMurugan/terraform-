@@ -40,7 +40,7 @@ module "web_server" {
   asg_max_size          = 2
   create_https_listener = false // No HTTPS in dev to save on certificate costs
 
-
+  ssh_private_key = var.key_name
 
   common_tags = {
     Environment = "stage"

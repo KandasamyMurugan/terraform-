@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
     bucket         = "prod.kandasamy.in"
-    key            = "multi-env/stage/terraform.tfstate"
+    key            = "multi-env/prod/terraform.tfstate"
     region         = "us-east-1"
-    dynamodb_table = "stage.tfstate"
+    dynamodb_table = "prod.tfstate"
     encrypt        = true
   }
 }

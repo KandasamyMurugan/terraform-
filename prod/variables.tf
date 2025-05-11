@@ -41,3 +41,4 @@ variable "db_password" {
 }
 
 variable "environment" {}
+variable "key_name" {}

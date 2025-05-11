@@ -20,7 +20,6 @@ module "networking" {
   availability_zones   = var.availability_zones
   enable_nat_gateway   = false // Save costs in dev by not using NAT
 
-
   common_tags = {
     Environment = "dev"
     Project     = "multi-env-infrastructure"
@@ -40,7 +39,10 @@ module "web_server" {
   asg_max_size          = 2
   create_https_listener = false // No HTTPS in dev to save on certificate costs
 
-
+  # Add the required SSH private key
+  ssh_private_key = var.key_name
+  # Optional: if you prefer to use a path instead
+  # ssh_private_key_path = var.ssh_private_key_path
 
   common_tags = {
     Environment = "dev"
